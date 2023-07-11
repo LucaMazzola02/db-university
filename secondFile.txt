@@ -1,0 +1,63 @@
+------ GROUP BY ------ 
+
+1-
+SELECT COUNT(`id`), YEAR(`enrolment_date`) AS `data_di_iscrizione`
+FROM `students` 
+GROUP BY `data_di_iscrizione`;
+2-
+SELECT COUNT(`id`), `office_address` AS `sede_ufficio`
+FROM `teachers` 
+GROUP BY `sede_ufficio`;
+3-
+SELECT AVG(`vote`), `exam_id`
+FROM `exam_student` 
+GROUP BY `exam_id`;
+4-
+SELECT COUNT(`id`), `department_id` AS `dipartimenti`
+FROM `degrees` 
+GROUP BY `dipartimenti`;
+
+------ JOIN ------
+
+
+1-
+SELECT * 
+FROM `degrees` 
+JOIN `students`
+ON `students`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia';
+2-
+SELECT * 
+FROM `departments` 
+JOIN `degrees`
+ON `degrees`.`department_id` = `departments`.`id`
+WHERE `departments`.`name` = 'Dipartimento di Neuroscienze'
+AND `degrees`.`level` = 'magistrale';
+3-
+SELECT *
+FROM `teachers`
+JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id` 
+JOIN `courses` ON `courses`.`id` = `course_teacher`.`course_id` 
+WHERE `teachers`.`id` = 44;
+4-
+SELECT *
+FROM `students`
+JOIN `degrees`
+ON `degrees`.`id` = `students`.`degree_id`
+JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`;
+5-
+SELECT *
+FROM `degrees`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id`;
+6-
+SELECT *
+FROM `teachers`
+JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id` 
+JOIN `courses` ON `courses`.`id` = `course_teacher`.`course_id` 
+JOIN `degrees` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `departments` ON `departments`.`id` = `degrees`.`department_id`
+WHERE `departments`.`name` = 'Dipartimento di Matematica';
+
