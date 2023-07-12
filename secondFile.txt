@@ -1,5 +1,4 @@
 ------ GROUP BY ------ 
-
 1-
 SELECT COUNT(`id`), YEAR(`enrolment_date`) AS `data_di_iscrizione`
 FROM `students` 
@@ -18,8 +17,6 @@ FROM `degrees`
 GROUP BY `dipartimenti`;
 
 ------ JOIN ------
-
-
 1-
 SELECT * 
 FROM `degrees` 
